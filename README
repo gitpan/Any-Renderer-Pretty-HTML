@@ -1,0 +1,82 @@
+NAME
+    Any::Renderer::Pretty::HTML - Render data structures through
+    Data::Format::Pretty::HTML
+
+VERSION
+    version 0.01
+
+SYNOPSIS
+     use Any::Renderer;
+
+     my %options = (table_column_orders => [[qw/a b/]]);
+     my $format  = "Pretty::HTML";
+     my $r = Any::Renderer->new($format, \%options);
+
+     my $data_structure = [...]; # arbitrary structure
+     my $string = $r->render($data_structure);
+
+DESCRIPTION
+    Any::Renderer::Pretty::HTML renders any Perl data structure passed to it
+    with Data::Format::Pretty::HTML. For example:
+
+     [{a=>11, b=>12}, {a=>21, c=>23}, {b=>32, c=>33}]
+
+    will be rendered into something like:
+
+     <table>
+       <tr>
+         <th>a</th>
+         <td>b</th>
+         <th>c</th>
+       </tr>
+       <tr>
+         <td>11</td>
+         <td>12</td>
+         <td></td>
+       </tr>
+       <tr>
+         <td>21</td>
+         <td></td>
+         <td>23</td>
+       </tr>
+       <tr>
+         <td></td>
+         <td>32</td>
+         <td>33</td>
+       </tr>
+     </table>
+
+    See Data::Format::Pretty::HTML for more details on the formatting.
+
+METHODS
+  new($format, \%options)
+    $format must be "Pretty::HTML". See "OPTIONS" for valid \%options.
+
+  $r->render($data_structure) => STRING
+    The main method.
+
+  FUNCTIONS
+    None is exported.
+
+  requires_template($format) => BOOL
+    Will return false.
+
+  available_formats() => ARRAYREF
+    Will return ['Pretty::HTML'].
+
+OPTIONS
+    Options are format_pretty() options. See Data::Format::Pretty::HTML for
+    available options.
+
+SEE ALSO
+    Data::Format::Pretty::HTML
+
+AUTHOR
+    Steven Haryanto <stevenharyanto@gmail.com>
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2011 by Steven Haryanto.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
+
